@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace SIGET.Models
 {
@@ -16,5 +17,7 @@ namespace SIGET.Models
         public string Correo { get; set; }
         [Required]
         public string Area { get; set; }
+        [ValidateNever]
+        public string ImageUrl { get; set; }
     }
 }

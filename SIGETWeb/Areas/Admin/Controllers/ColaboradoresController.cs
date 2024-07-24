@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis;
 using Practica.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
@@ -22,7 +23,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return View(objColaboradoresList);
         }
 
-        public IActionResult Detalles()
+        public IActionResult Detalles(int colaboradorId)
         {
             return View();
 

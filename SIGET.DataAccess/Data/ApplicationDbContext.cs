@@ -22,7 +22,8 @@ namespace SIGET.DataAccess.Data
                     Direccion = "Mi direccion",
                     Telefono = "809-899-8828",
                     Correo = "correo@gmail.com",
-                    Area = "Tecnologia"
+                    Area = "Tecnologia",
+                    ImageUrl = ""
                 }
                 );
         }
