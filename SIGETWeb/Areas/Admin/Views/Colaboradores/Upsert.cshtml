@@ -1,0 +1,79 @@
+﻿@using SIGET.Models.ViewModel
+@model ColaboradorVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-dark py-2"> @(Model.Colaboradores.Id != 0 ? "Update" : "Crear") Colaboradores</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Colaboradores.Id" hidden />
+            <input asp-for="Colaboradores.ImageUrl" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        @*<div asp-validation-summary="ModelOnly"></div>*@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Colaboradores.Nombre" class="form-control border-0 shadow" />
+                            <label asp-for="Colaboradores.Nombre" class="ms-2"></label>
+                            <span asp-validation-for="Colaboradores.Nombre" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Colaboradores.Direccion" class="form-control border-0 shadow" />
+                            <label asp-for="Colaboradores.Direccion" class="ms-2"></label>
+                            <span asp-validation-for="Colaboradores.Direccion" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Colaboradores.Telefono" class="form-control border-0 shadow" />
+                            <label asp-for="Colaboradores.Telefono" class="ms-2"></label>
+                            <span asp-validation-for="Colaboradores.Telefono" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Colaboradores.Correo" class="form-control border-0 shadow" />
+                            <label asp-for="Colaboradores.Correo" class="ms-2"></label>
+                            <span asp-validation-for="Colaboradores.Correo" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Colaboradores.Area" class="form-control border-0 shadow" />
+                            <label asp-for="Colaboradores.Area" class="ms-2"></label>
+                            <span asp-validation-for="Colaboradores.Area" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="Colaboradores.ImageUrl" class="p-0"></label>
+                            <input type="file" name="file" class="form-control" />
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Colaboradores.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                                    Back to List
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src="@Model.Colaboradores.ImageUrl" width="100%"
+                         style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+

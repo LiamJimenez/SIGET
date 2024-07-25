@@ -7,18 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\colaboradores.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\js\colaboradores.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\colaboradores.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
@@ -34,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\colaborador\" />
   </ItemGroup>
 
 </Project>

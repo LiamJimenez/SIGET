@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -10,9 +11,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240725175636_AgregarColaboradoresIdenDatabase")]
+    partial class AgregarColaboradoresIdenDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,7 +68,7 @@ namespace SIGET.DataAccess.Migrations
                         {
                             Id = 1,
                             Area = "Tecnologia",
-                            ColaboradoresId = 1,
+                            ColaboradoresId = 0,
                             Correo = "correo@gmail.com",
                             Direccion = "Mi direccion",
                             ImageUrl = "",

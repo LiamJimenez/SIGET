@@ -23,7 +23,8 @@ namespace SIGET.DataAccess.Data
                     Telefono = "809-899-8828",
                     Correo = "correo@gmail.com",
                     Area = "Tecnologia",
-                    ImageUrl = ""
+                    ImageUrl = "",
+                    ColaboradoresId = 1
                 }
                 );
         }
