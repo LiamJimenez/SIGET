@@ -115,31 +115,29 @@ namespace SIGETWeb.Areas.Admin.Controllers
         }
 
 
+
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            var ColaboradorToBeDeleted = _unitOfWork.Colaboradores.Get(u => u.Id == id);
+            if (ColaboradorToBeDeleted == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
-            Colaboradores? colaboradoresFromDb = _unitOfWork.Colaboradores.Get(u => u.Id == id);
-            if (colaboradoresFromDb == null)
+
+            var oldImagePath =
+                            Path.Combine(_webHostEnvironment.WebRootPath,
+                            ColaboradorToBeDeleted.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
             {
-                return NotFound();
+                System.IO.File.Delete(oldImagePath);
             }
-            return View(colaboradoresFromDb);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            Colaboradores? obj = _unitOfWork.Colaboradores.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Colaboradores.Remove(obj);
+
+            _unitOfWork.Colaboradores.Remove(ColaboradorToBeDeleted);
             _unitOfWork.Save();
-            TempData["exito"] = "Colaborador eliminado correctamente";
-            return RedirectToAction("Index");
+
+            return Json(new { success = true, message = "Eliminado exitosamente" });
         }
 
     }
