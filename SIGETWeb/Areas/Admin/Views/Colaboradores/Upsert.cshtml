@@ -5,7 +5,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-dark py-2"> @(Model.Colaboradores.Id != 0 ? "Update" : "Crear") Colaboradores</h2>
+                <h2 class="text-dark py-2"> @(Model.Colaboradores.Id != 0 ? "Editar" : "Crear") Colaborador</h2>
             </div>
         </div>
     </div>
@@ -16,7 +16,6 @@
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
-                        @*<div asp-validation-summary="ModelOnly"></div>*@
                         <div class="form-floating py-2 col-12">
                             <input asp-for="Colaboradores.Nombre" class="form-control border-0 shadow" />
                             <label asp-for="Colaboradores.Nombre" class="ms-2"></label>
@@ -51,7 +50,7 @@
                             <div class="col-6 col-md-3">
                                 @if (Model.Colaboradores.Id != 0)
                                 {
-                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                    <button type="submit" class="btn btn-primary form-control">Editar</button>
                                 }
                                 else
                                 {
@@ -59,8 +58,8 @@
                                 }
                             </div>
                             <div class="col-6 col-md-3">
-                                <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-primary border  form-control">
-                                    Back to List
+                                <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-primary border form-control">
+                                    Atras
                                 </a>
                             </div>
                         </div>

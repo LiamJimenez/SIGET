@@ -104,11 +104,16 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
         }
 
-        public IActionResult Detalles(int colaboradorId)
+        public IActionResult Detalles(int id)
         {
-            return View();
-
+            var colaborador = _unitOfWork.Colaboradores.Get(c => c.Id == id);
+            if (colaborador == null)
+            {
+                return NotFound();
+            }
+            return View(colaborador);
         }
+
 
         public IActionResult Delete(int? id)
         {
@@ -136,5 +141,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
             TempData["exito"] = "Colaborador eliminado correctamente";
             return RedirectToAction("Index");
         }
+
     }
 }
