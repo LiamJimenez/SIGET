@@ -38,7 +38,7 @@
                 <div class="card-footer text-center">
                     <div class="btn-group" role="group" aria-label="Acciones">
                         <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Editar</a>
-                        <a href="#" onclick="Delete('/admin/colaborador/delete/@Model.Id'); return false;" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Eliminar</a>
+                        <a onclick=Delete('/admin/colaborador/delete/${data}'); class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Eliminar</a>
                         <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-secondary mx-2">Regresar</a>
                     </div>
                 </div>
@@ -48,5 +48,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/colaborador.js"></script>
+    <script src="~/js/colaboradores.js"></script>
 }

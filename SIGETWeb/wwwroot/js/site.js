@@ -1,3 +1,9 @@
-﻿$('#myTable').DataTable({
-    ajax: '/api/myData'
+﻿document.addEventListener('DOMContentLoaded', function () {
+    
+    let table = new DataTable('#MiTabla', {
+        paging: true,       
+        searching: true,    
+        ordering: true,     
+        info: true          
+    });
 });

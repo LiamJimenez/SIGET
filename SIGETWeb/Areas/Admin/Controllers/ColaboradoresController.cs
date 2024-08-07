@@ -90,7 +90,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     _unitOfWork.Colaboradores.Update(colaboradorVM.Colaboradores);
                 }
                 _unitOfWork.Save();
-                TempData["success"] = "Product created successfully";
+                TempData["exito"] = "Colaborador agregado correctamente";
                 return RedirectToAction("Index");
             }
             else
@@ -114,6 +114,15 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return View(colaborador);
         }
 
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll(includeProperties: "Colaborador").ToList();
+            return Json(new { data = objColaboradoresList });
+        }
+
 
 
         [HttpDelete]
@@ -122,7 +131,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             var ColaboradorToBeDeleted = _unitOfWork.Colaboradores.Get(u => u.Id == id);
             if (ColaboradorToBeDeleted == null)
             {
-                return Json(new { success = false, message = "Error while deleting" });
+                return Json(new { success = false, message = "Error al eliminar al calaborador" });
             }
 
             var oldImagePath =
@@ -139,6 +148,8 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
             return Json(new { success = true, message = "Eliminado exitosamente" });
         }
+
+        #endregion 
 
     }
 }

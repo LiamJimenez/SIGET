@@ -29,7 +29,6 @@ namespace SIGET.DataAccess.Data
                     Correo = "correo@gmail.com",
                     Area = "Tecnologia",
                     ImageUrl = "",
-                    ColaboradoresId = 1
                 }
                 );
         }
