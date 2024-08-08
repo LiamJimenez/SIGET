@@ -1,4 +1,5 @@
 ﻿using SIGET.DataAccess.Repository.IRepository;
+using SIGET.Models;
 using SIGET.Repository;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace Practica.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IInventarioRepository: IRepository<Inventario>
     {
-        IColaboradoresRepository Colaboradores { get; }
-        IInventarioRepository Inventario { get; }
-        void Save();
+        void Update(Inventario obj);
     }
 }

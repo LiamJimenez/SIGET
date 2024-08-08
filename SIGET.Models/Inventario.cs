@@ -12,10 +12,22 @@ namespace SIGET.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Nombre { get; set; }
-        public string Categoria { get; set; }
+
+        [Required]
         public int Cantidad { get; set; }
-        public DateTime Renovacion { get; set; }
+
+        [Required]
+        public int PuntoReabastecimiento { get; set; }
+
+        [Required]
+        public int FechaExpiracion { get; set; }
+
+        [Required]
+        public string Descripcion { get; set; }
+        public DateTime? FechaRenovacion { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

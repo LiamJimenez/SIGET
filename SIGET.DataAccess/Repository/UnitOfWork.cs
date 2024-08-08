@@ -1,4 +1,5 @@
-﻿using Practica.DataAccess.Repository.IRepository;
+﻿using Practica.DataAccess.Repository;
+using Practica.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
@@ -10,11 +11,13 @@ namespace SIGET.DataAccess.Repository
     {
         private ApplicationDbContext _db;
         public IColaboradoresRepository Colaboradores { get; private set; }
+        public IInventarioRepository Inventario { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             Colaboradores = new ColaboradoresRepository(_db);
+            Inventario = new InventarioRepository(_db);
 
         }
 

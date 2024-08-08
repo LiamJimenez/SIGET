@@ -13,6 +13,7 @@ namespace SIGET.DataAccess.Data
         }
 
         public DbSet<Colaboradores> colaboradores { get; set; }
+        public DbSet<Inventario> inventario { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,17 @@ namespace SIGET.DataAccess.Data
                     Correo = "correo@gmail.com",
                     Area = "Tecnologia",
                     ImageUrl = "",
+                }
+                );
+            modelBuilder.Entity<Inventario>().HasData(
+                new Inventario
+                {
+                    Id = 1,
+                    Nombre = "Disco Duro SSD",
+                    Cantidad = 20,
+                    PuntoReabastecimiento = 5,
+                    ImageUrl = "",
+                    Descripcion = "Este es un Disco Duro SSD",
                 }
                 );
         }

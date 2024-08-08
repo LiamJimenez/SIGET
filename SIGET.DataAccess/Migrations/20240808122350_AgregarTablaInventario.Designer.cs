@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240808122350_AgregarTablaInventario")]
+    partial class AgregarTablaInventario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,10 +287,6 @@ namespace SIGET.DataAccess.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("Descripcion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("FechaExpiracion")
                         .HasColumnType("int");
 
@@ -307,14 +306,13 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("inventario");
+                    b.ToTable("Inventario");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Cantidad = 20,
-                            Descripcion = "Este es un Disco Duro SSD",
                             FechaExpiracion = 0,
                             ImageUrl = "",
                             Nombre = "Disco Duro SSD",
