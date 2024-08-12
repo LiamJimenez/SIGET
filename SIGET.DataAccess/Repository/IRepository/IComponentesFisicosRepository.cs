@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace Practica.DataAccess.Repository.IRepository
 {
-    public interface IInventarioRepository: IRepository<Inventario>
+    public interface IComponentesFisicosRepository : IRepository<ComponentesFisicos>
     {
-        void Update(Inventario obj);
+        void Update(ComponentesFisicos obj);
     }
 }

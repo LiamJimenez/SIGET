@@ -11,7 +11,7 @@ namespace Practica.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         IColaboradoresRepository Colaboradores { get; }
-        IInventarioRepository Inventario { get; }
+        IComponentesFisicosRepository ComponentesFisicos { get; }
         void Save();
     }
 }

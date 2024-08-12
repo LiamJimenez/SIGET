@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\colaborador\" />
-    <Folder Include="wwwroot\images\inventario\" />
+    <Folder Include="wwwroot\images\componentesfisicos\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,46 @@
+﻿@model SIGET.Models.ComponentesFisicos
+
+@{
+    ViewData["Title"] = "Componentes";
+}
+
+<h2 class="text-center mb-4">Componentes</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-dark">
+                @if (Model.ImageUrl != null)
+                {
+                    <div class="card-header text-center">
+                        <img src="@Model.ImageUrl" class="img-fluid" alt="Imagen del componente" style="max-height: 150px; object-fit: cover;" />
+                    </div>
+                }
+                <div class="card-body">
+                    <h4 class="card-title">Información del Componente</h4>
+                    <dl class="row">
+                        <dt class="col-sm-4 font-weight-bold">Nombre:</dt>
+                        <dd class="col-sm-8">@Model.Nombre</dd>
+                        
+                        <dt class="col-sm-4 font-weight-bold">Cantidad:</dt>
+                        <dd class="col-sm-8">@Model.Cantidad</dd>
+                        
+                        <dt class="col-sm-4 font-weight-bold">Punto de Reabastecimiento:</dt>
+                        <dd class="col-sm-8">@Model.PuntoReabastecimiento</dd>
+
+                        <dt class="col-sm-4 font-weight-bold">Descripcion:</dt>
+                        <dd class="col-sm-8">@Model.Descripcion</dd>
+
+                    </dl>
+                </div>
+                <div class="card-footer text-center">
+                    <div class="btn-group" role="group" aria-label="Acciones">
+                        <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Editar</a>
+                        
+                        <a asp-controller="ComponentesFisicos" asp-action="Index" class="btn btn-outline-secondary mx-2">Regresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

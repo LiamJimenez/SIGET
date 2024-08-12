@@ -13,6 +13,35 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700&display=swap");
 
+.collaborator-card {
+    Box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    Border-color: #343a40;
+}
+
+.collaborator-header {
+    Background-color: #343a40;
+    Color: white;
+    Padding: 20px;
+}
+
+.collaborator-image {
+    Border-radius: 50%;
+    Border: 3px solid white;
+    Max-height: 150px;
+    Object-fit: cover;
+    Width: 150px;
+}
+
+.collaborator-label {
+    Font-weight: bold;
+    Color: #6c757d;
+}
+
+.collaborator-footer {
+    Background-color: #f8f9fa;
+    Padding: 15px;
+}
+
 .divider-text:before,
 .divider-text::after {
     color: white;

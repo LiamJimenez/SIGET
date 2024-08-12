@@ -12,8 +12,8 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240808134214_AgregarDescripcionInventario")]
-    partial class AgregarDescripcionInventario
+    [Migration("20240809143639_AgregarTablaComponentesFisicos")]
+    partial class AgregarTablaComponentesFisicos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -276,7 +276,7 @@ namespace SIGET.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SIGET.Models.Inventario", b =>
+            modelBuilder.Entity("SIGET.Models.ComponentesFisicos", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -291,12 +291,6 @@ namespace SIGET.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FechaExpiracion")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("FechaRenovacion")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -310,7 +304,7 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("inventario");
+                    b.ToTable("componentesfisicos");
 
                     b.HasData(
                         new
@@ -318,9 +312,17 @@ namespace SIGET.DataAccess.Migrations
                             Id = 1,
                             Cantidad = 20,
                             Descripcion = "Este es un Disco Duro SSD",
-                            FechaExpiracion = 0,
                             ImageUrl = "",
                             Nombre = "Disco Duro SSD",
+                            PuntoReabastecimiento = 5
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Cantidad = 50,
+                            Descripcion = "Este es otro producto",
+                            ImageUrl = "",
+                            Nombre = "Otro equipo",
                             PuntoReabastecimiento = 5
                         });
                 });

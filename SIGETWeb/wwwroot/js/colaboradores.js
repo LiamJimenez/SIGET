@@ -1,22 +1,19 @@
-﻿function Delete(url) {
-    Swal.fire({
-        title: 'Estas seguro?',
-        text: "No podras revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Eliminar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: url,
-                type: 'DELETE',
-                success: function (data) {
-                    dataTable.ajax.reload();
-                    toastr.success(data.message);
+﻿function Delete(id) {
+    if (confirm("¿Estás seguro de que deseas eliminar este colaborador?")) {
+        $.ajax({
+            type: "DELETE",
+            url: '/Admin/Colaboradores/Delete/' + id,
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    window.location.href = '/Admin/Colaboradores/Index';
+                } else {
+                    alert(response.message);
                 }
-            })
-        }
-    })
+            },
+            error: function () {
+                alert("Ha ocurrido un error al intentar eliminar el colaborador.");
+            }
+        });
+    }
 }

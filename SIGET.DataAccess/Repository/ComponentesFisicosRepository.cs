@@ -8,17 +8,17 @@ using Practica.DataAccess.Repository.IRepository;
 
 namespace SIGET.Repository
 {
-    public class InventarioRepository : Repository<Inventario>, IInventarioRepository
+    public class ComponentesFisicosRepository : Repository<ComponentesFisicos>, IComponentesFisicosRepository
     {
         private ApplicationDbContext _db;
-        public InventarioRepository(ApplicationDbContext db) : base(db)
+        public ComponentesFisicosRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Inventario obj)
+        public void Update(ComponentesFisicos obj)
         {
-            _db.inventario.Update(obj);
+            _db.componentesfisicos.Update(obj);
         }
     }
 }

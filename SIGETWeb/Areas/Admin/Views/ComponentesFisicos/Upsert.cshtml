@@ -1,0 +1,84 @@
+﻿@using SIGET.Models.ViewModel
+@model ComponentesFisicosVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-dark py-2"> @(Model.ComponentesFisicos.Id != 0 ? "Editar" : "Crear") Componente</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="ComponentesFisicos.Id" hidden />
+            <input asp-for="ComponentesFisicos.ImageUrl" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="ComponentesFisicos.Nombre" class="form-control border-0 shadow" />
+                            <label asp-for="ComponentesFisicos.Nombre" class="ms-2"></label>
+                            <span asp-validation-for="ComponentesFisicos.Nombre" class="text-danger"></span>
+                        </div>
+                        @* <div class="py-2 col-12">
+                            <label asp-for="ComponentesFisicos.Descripcion" class="ms-2 text-muted"></label>
+                            <textarea asp-for="ComponentesFisicos.Descripcion" class="form-control border-0 shadow"></textarea>
+                        </div> *@
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="ComponentesFisicos.Cantidad" class="form-control border-0 shadow" />
+                            <label asp-for="ComponentesFisicos.Cantidad" class="ms-2"></label>
+                            <span asp-validation-for="ComponentesFisicos.Cantidad" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="ComponentesFisicos.PuntoReabastecimiento" class="form-control border-0 shadow" />
+                            <label asp-for="ComponentesFisicos.PuntoReabastecimiento" class="ms-2"></label>
+                            <span asp-validation-for="ComponentesFisicos.PuntoReabastecimiento" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="ComponentesFisicos.ImageUrl" class="p-0"></label>
+                            <input type="file" name="file" class="form-control" />
+                        </div>
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.ComponentesFisicos.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Editar</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Crear</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="ComponentesFisicos" asp-action="Index" class="btn btn-outline-primary border form-control">
+                                    Atras
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2">
+                    <img src="@Model.ComponentesFisicos.ImageUrl" width="100%"
+                         style="border-radius:5px; border:1px solid #bbb9b9" />
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

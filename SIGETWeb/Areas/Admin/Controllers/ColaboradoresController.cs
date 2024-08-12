@@ -123,27 +123,23 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return Json(new { data = objColaboradoresList });
         }
 
-
-
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var ColaboradorToBeDeleted = _unitOfWork.Colaboradores.Get(u => u.Id == id);
-            if (ColaboradorToBeDeleted == null)
+            var colaboradorToBeDeleted = _unitOfWork.Colaboradores.Get(u => u.Id == id);
+            if (colaboradorToBeDeleted == null)
             {
-                return Json(new { success = false, message = "Error al eliminar al calaborador" });
+                return Json(new { success = false, message = "Error al eliminar al colaborador" });
             }
 
-            var oldImagePath =
-                            Path.Combine(_webHostEnvironment.WebRootPath,
-                            ColaboradorToBeDeleted.ImageUrl.TrimStart('\\'));
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, colaboradorToBeDeleted.ImageUrl.TrimStart('\\'));
 
             if (System.IO.File.Exists(oldImagePath))
             {
                 System.IO.File.Delete(oldImagePath);
             }
 
-            _unitOfWork.Colaboradores.Remove(ColaboradorToBeDeleted);
+            _unitOfWork.Colaboradores.Remove(colaboradorToBeDeleted);
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Eliminado exitosamente" });

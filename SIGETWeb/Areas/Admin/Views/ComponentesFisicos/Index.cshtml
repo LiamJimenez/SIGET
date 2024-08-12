@@ -4,7 +4,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-dark py-2">Inventario</h2>
+                <h2 class="text-dark py-2">Listado de Componentes</h2>
             </div>
         </div>
     </div>
@@ -13,8 +13,8 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-end">
-                <a asp-controller="Inventario" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>  Agregar
+                <a asp-controller="ComponentesFisicos" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  Agregar Componente
                 </a>
             </div>
         </div>
@@ -24,9 +24,6 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Cantidad</th>
-                    <th>Punto de reabastecimiento</th>
-                    <th>Fecha de expiracion</th>
-                    <th>Fecha de Renovacion</th>
                     <th></th>
                 </tr>
             </thead>
@@ -36,14 +33,11 @@
                     <tr>
                         <td>@obj.Nombre</td>
                         <td>@obj.Cantidad</td>
-                        <td>@obj.PuntoReabastecimiento</td>
-                        <td>@obj.FechaExpiracion</td>
-                        <td>@obj.FechaRenovacion</td>
 
                         <td>
                             <div class="w-75 btn-group" role="group">
-                                <a asp-controller="Inventario" asp-action="Detalles" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
-                                    <i class="bi bi-info-circle-fill"></i>
+                                <a asp-controller="ComponentesFisicos" asp-action="Detalles" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                    <i class="bi bi-person-fill-exclamation"></i>
                                 </a>
                             </div>
                         </td>

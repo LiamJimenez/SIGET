@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SIGET.Models;
+using SIGET.Models.ViewModel;
 
 namespace SIGET.DataAccess.Data
 {
@@ -13,7 +14,7 @@ namespace SIGET.DataAccess.Data
         }
 
         public DbSet<Colaboradores> colaboradores { get; set; }
-        public DbSet<Inventario> inventario { get; set; }
+        public DbSet<ComponentesFisicos> componentesfisicos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,8 +33,8 @@ namespace SIGET.DataAccess.Data
                     ImageUrl = "",
                 }
                 );
-            modelBuilder.Entity<Inventario>().HasData(
-                new Inventario
+            modelBuilder.Entity<ComponentesFisicos>().HasData(
+                new ComponentesFisicos
                 {
                     Id = 1,
                     Nombre = "Disco Duro SSD",
@@ -41,8 +42,18 @@ namespace SIGET.DataAccess.Data
                     PuntoReabastecimiento = 5,
                     ImageUrl = "",
                     Descripcion = "Este es un Disco Duro SSD",
+                },
+                new ComponentesFisicos
+                {
+                    Id = 2,
+                    Nombre = "Otro equipo",
+                    Cantidad = 50,
+                    PuntoReabastecimiento = 5,
+                    ImageUrl = "",
+                    Descripcion = "Este es otro producto",
                 }
                 );
+
         }
     }
 }

@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 namespace SIGETWeb.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
-    {
+    {      
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<DownloadPersonalDataModel> _logger;
 
@@ -42,7 +42,7 @@ namespace SIGETWeb.Areas.Identity.Pages.Account.Manage
             }
 
             _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
-
+                                                                                                                    
             // Only include personal data for download
             var personalData = new Dictionary<string, string>();
             var personalDataProps = typeof(IdentityUser).GetProperties().Where(
@@ -57,7 +57,7 @@ namespace SIGETWeb.Areas.Identity.Pages.Account.Manage
             {
                 personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
             }
-
+            
             personalData.Add($"Authenticator Key", await _userManager.GetAuthenticatorKeyAsync(user));
 
             Response.Headers.TryAdd("Content-Disposition", "attachment; filename=PersonalData.json");

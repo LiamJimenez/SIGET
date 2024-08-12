@@ -9,37 +9,41 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card border-dark">
+            <div class="card collaborator-card">
                 @if (Model.ImageUrl != null)
                 {
-                    <div class="card-header text-center">
-                        <img src="@Model.ImageUrl" class="img-fluid" alt="Imagen del colaborador" style="max-height: 150px; object-fit: cover;" />
+                    <div class="card-header text-center collaborator-header">
+                        <img src="@Model.ImageUrl" class="collaborator-image" alt="Imagen del colaborador" />
                     </div>
                 }
                 <div class="card-body">
-                    <h4 class="card-title">Información del Colaborador</h4>
+                    <h4 class="card-title text-center mb-4">Información del Colaborador</h4>
                     <dl class="row">
-                        <dt class="col-sm-4 font-weight-bold">Nombre:</dt>
+                        <dt class="col-sm-4 collaborator-label">Nombre:</dt>
                         <dd class="col-sm-8">@Model.Nombre</dd>
 
-                        <dt class="col-sm-4 font-weight-bold">Dirección:</dt>
+                        <dt class="col-sm-4 collaborator-label">Dirección:</dt>
                         <dd class="col-sm-8">@Model.Direccion</dd>
 
-                        <dt class="col-sm-4 font-weight-bold">Teléfono:</dt>
+                        <dt class="col-sm-4 collaborator-label">Teléfono:</dt>
                         <dd class="col-sm-8">@Model.Telefono</dd>
 
-                        <dt class="col-sm-4 font-weight-bold">Correo:</dt>
+                        <dt class="col-sm-4 collaborator-label">Correo:</dt>
                         <dd class="col-sm-8">@Model.Correo</dd>
 
-                        <dt class="col-sm-4 font-weight-bold">Área:</dt>
+                        <dt class="col-sm-4 collaborator-label">Área:</dt>
                         <dd class="col-sm-8">@Model.Area</dd>
                     </dl>
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer text-center collaborator-footer">
                     <div class="btn-group" role="group" aria-label="Acciones">
-                        <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Editar</a>
-                        <a onclick=Delete('/admin/colaborador/delete/${data}'); class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Eliminar</a>
-                        <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-secondary mx-2">Regresar</a>
+                        <a asp-action="Upsert" asp-route-id="@Model.Id" class="btn btn-primary mx-2">
+                            <i class="bi bi-pencil-square"></i> Editar
+                        </a>
+                        <a href="javascript:void(0);" onclick="Delete(@Model.Id);" class="btn btn-danger mx-2"><i class="bi bi-trash3"></i> Eliminar</a>
+                        <a asp-controller="Colaboradores" asp-action="Index" class="btn btn-outline-secondary mx-2">
+                            Regresar
+                        </a>
                     </div>
                 </div>
             </div>

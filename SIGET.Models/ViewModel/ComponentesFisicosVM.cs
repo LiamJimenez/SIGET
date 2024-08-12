@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace SIGET.Models.ViewModel
 {
-    public class InventarioVM
+    public class ComponentesFisicosVM
     {
-        public Inventario Inventario { get; set; }
+        public ComponentesFisicos ComponentesFisicos { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> InventarioList { get; set; }
+        public IEnumerable<SelectListItem> ComponentesFisicosList { get; set; }
     }
 }

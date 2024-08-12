@@ -1,9 +1,11 @@
 ﻿document.addEventListener('DOMContentLoaded', function () {
     
-    let table = new DataTable('#MiTabla', {
-        paging: true,       
-        searching: true,    
-        ordering: true,     
-        info: true          
+    table = $('#MiTabla').DataTable({
+        paging: false
     });
-});
+
+    table.destroy();
+
+    table = $('#MiTabla').DataTable({
+        searching: false
+    });
