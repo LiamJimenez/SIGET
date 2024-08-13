@@ -8,12 +8,12 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card collaborator-card">
                 @if (Model.ImageUrl != null)
                 {
                     <div class="card-header text-center collaborator-header">
-                        <img src="@Model.ImageUrl" class="collaborator-image" alt="Imagen del colaborador" />
+                        <img src="@Model.ImageUrl" class="collaborator-image img-fluid rounded-circle" alt="Imagen del colaborador" style="max-width: 150px; height: auto;" />
                     </div>
                 }
                 <div class="card-body">

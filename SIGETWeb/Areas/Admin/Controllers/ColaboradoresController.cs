@@ -21,6 +21,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }
+
         public IActionResult Index()
         {
             List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll().ToList();
@@ -48,7 +49,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 colaboradorVM.Colaboradores = _unitOfWork.Colaboradores.Get(u => u.Id == id);
                 return View(colaboradorVM);
             }
-
         }
 
         [HttpPost]

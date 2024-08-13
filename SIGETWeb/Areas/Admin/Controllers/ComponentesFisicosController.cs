@@ -20,6 +20,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }
+
         public IActionResult Index()
         {
             List<ComponentesFisicos> objComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().ToList();
@@ -28,7 +29,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-
             ComponentesFisicosVM componentesFisicosVM = new()
             {
                 ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
@@ -64,7 +64,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     {
                         var oldImagePath =
                             Path.Combine(wwwRootPath, componentesFisicosVM.ComponentesFisicos.ImageUrl.TrimStart('\\'));
-
+                        
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
@@ -77,7 +77,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     }
                     
                     componentesFisicosVM.ComponentesFisicos.ImageUrl = @"\images\componentesfisicos\" + fileName;
-                }
+                } 
 
                 if (componentesFisicosVM.ComponentesFisicos.Id == 0)
                 {
@@ -101,6 +101,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 return View(componentesFisicosVM);
             }
         }
+
         public IActionResult Detalles(int id)
         {
             var componentesfisicos = _unitOfWork.ComponentesFisicos.Get(c => c.Id == id);
@@ -110,5 +111,38 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
             return View(componentesfisicos);
         }
+
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<ComponentesFisicos> ComponentesfisicosList = _unitOfWork.ComponentesFisicos.GetAll(includeProperties: "ComponentesFisicos").ToList();
+            return Json(new { data = ComponentesfisicosList });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var componentefisicoToBeDeleted = _unitOfWork.ComponentesFisicos.Get(u => u.Id == id);
+            if (componentefisicoToBeDeleted == null)
+            {
+                return Json(new { success = false, message = "Error al eliminar al componente" });
+            }
+
+            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, componentefisicoToBeDeleted.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.ComponentesFisicos.Remove(componentefisicoToBeDeleted);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Eliminado exitosamente" });
+        }
+
+        #endregion 
     }
 }

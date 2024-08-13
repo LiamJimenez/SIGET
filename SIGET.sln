@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGETWeb", "SIGETWeb\SIGETWeb.csproj", "{5DFCEB45-6EAC-4AF3-8712-1CF877A2F476}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGETWeb", "SIGETWeb\SIGETWeb.csproj", "{5DFCEB45-6EAC-4AF3-8712-1CF877A2F476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGET.Models", "SIGET.Models\SIGET.Models.csproj", "{FCC5AB98-281A-445E-A898-27211A1EE3FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGET.Models", "SIGET.Models\SIGET.Models.csproj", "{FCC5AB98-281A-445E-A898-27211A1EE3FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGET.DataAccess", "SIGET.DataAccess\SIGET.DataAccess.csproj", "{190C8C2F-BDD1-439B-95AB-8F9383F7F776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SIGET.DataAccess", "SIGET.DataAccess\SIGET.DataAccess.csproj", "{190C8C2F-BDD1-439B-95AB-8F9383F7F776}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIGET.Utility", "SIGET.Utility\SIGET.Utility.csproj", "{AF1465D5-F857-45ED-AC45-44B0A9466F4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{190C8C2F-BDD1-439B-95AB-8F9383F7F776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{190C8C2F-BDD1-439B-95AB-8F9383F7F776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190C8C2F-BDD1-439B-95AB-8F9383F7F776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1465D5-F857-45ED-AC45-44B0A9466F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1465D5-F857-45ED-AC45-44B0A9466F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1465D5-F857-45ED-AC45-44B0A9466F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1465D5-F857-45ED-AC45-44B0A9466F4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
