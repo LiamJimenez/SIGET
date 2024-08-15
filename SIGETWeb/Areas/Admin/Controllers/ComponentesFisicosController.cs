@@ -29,7 +29,8 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            ComponentesFisicosVM componentesFisicosVM = new()
+
+            ComponentesFisicosVM componentesfisicosVM = new()
             {
                 ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
                 {
@@ -40,17 +41,18 @@ namespace SIGETWeb.Areas.Admin.Controllers
             };
             if (id == null || id == 0)
             {
-                return View(componentesFisicosVM);
+                return View(componentesfisicosVM);
             }
             else
             {
-                componentesFisicosVM.ComponentesFisicos = _unitOfWork.ComponentesFisicos.Get(u => u.Id == id);
-                return View(componentesFisicosVM);
+                componentesfisicosVM.ComponentesFisicos = _unitOfWork.ComponentesFisicos.Get(u => u.Id == id);
+                return View(componentesfisicosVM);
             }
         }
 
+
         [HttpPost]
-        public IActionResult Upsert(ComponentesFisicosVM componentesFisicosVM, IFormFile? file)
+        public IActionResult Upsert(ComponentesFisicosVM componentesfisicosVM, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -58,34 +60,34 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string componentesFisicosPath = Path.Combine(wwwRootPath, @"images\componentesfisicos");
+                    string componentesfisicosPath = Path.Combine(wwwRootPath, @"images\componentesfisicos");
 
-                    if (!string.IsNullOrEmpty(componentesFisicosVM.ComponentesFisicos.ImageUrl))
+                    if (!string.IsNullOrEmpty(componentesfisicosVM.ComponentesFisicos.ImageUrl))
                     {
                         var oldImagePath =
-                            Path.Combine(wwwRootPath, componentesFisicosVM.ComponentesFisicos.ImageUrl.TrimStart('\\'));
-                        
+                            Path.Combine(wwwRootPath, componentesfisicosVM.ComponentesFisicos.ImageUrl.TrimStart('\\'));
+
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-                    
-                    using (var fileStream = new FileStream(Path.Combine(componentesFisicosPath, fileName), FileMode.Create))
+
+                    using (var fileStream = new FileStream(Path.Combine(componentesfisicosPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
-                    
-                    componentesFisicosVM.ComponentesFisicos.ImageUrl = @"\images\componentesfisicos\" + fileName;
-                } 
 
-                if (componentesFisicosVM.ComponentesFisicos.Id == 0)
+                    componentesfisicosVM.ComponentesFisicos.ImageUrl = @"\images\componentesfisicos\" + fileName;
+                }
+
+                if (componentesfisicosVM.ComponentesFisicos.Id == 0)
                 {
-                    _unitOfWork.ComponentesFisicos.Add(componentesFisicosVM.ComponentesFisicos);
+                    _unitOfWork.ComponentesFisicos.Add(componentesfisicosVM.ComponentesFisicos);
                 }
                 else
                 {
-                    _unitOfWork.ComponentesFisicos.Update(componentesFisicosVM.ComponentesFisicos);
+                    _unitOfWork.ComponentesFisicos.Update(componentesfisicosVM.ComponentesFisicos);
                 }
                 _unitOfWork.Save();
                 TempData["exito"] = "Componente agregado correctamente";
@@ -93,12 +95,12 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
             else
             {
-                componentesFisicosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
+                componentesfisicosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
                 });
-                return View(componentesFisicosVM);
+                return View(componentesfisicosVM);
             }
         }
 

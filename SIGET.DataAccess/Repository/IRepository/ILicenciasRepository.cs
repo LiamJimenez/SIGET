@@ -1,5 +1,4 @@
-﻿using SIGET.DataAccess.Repository.IRepository;
-using SIGET.Models;
+﻿using SIGET.Models;
 using SIGET.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace SIGET.DataAccess.Repository.IRepository
 {
-    public interface IComponentesFisicosRepository : IRepository<ComponentesFisicos>
+    public interface ILicenciasRepository : IRepository<Licencias>
     {
-        void Update(ComponentesFisicos obj);
+        void Update(Licencias obj);
     }
 }

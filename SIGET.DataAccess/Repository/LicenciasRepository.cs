@@ -6,17 +6,17 @@ using SIGET.Repository;
 
 namespace SIGET.Repository
 {
-    public class ColaboradoresRepository : Repository<Colaboradores>, IColaboradoresRepository
+    public class LicenciasRepository : Repository<Licencias>, ILicenciasRepository
     {
         private ApplicationDbContext _db;
-        public ColaboradoresRepository(ApplicationDbContext db) : base(db)
+        public LicenciasRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Colaboradores obj)
+        public void Update(Licencias obj)
         {
-            _db.colaboradores.Update(obj);
+            _db.licencias.Update(obj);
         }
     }
 }

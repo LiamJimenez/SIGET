@@ -12,6 +12,7 @@ namespace Practica.DataAccess.Repository.IRepository
     {
         IColaboradoresRepository Colaboradores { get; }
         IComponentesFisicosRepository ComponentesFisicos { get; }
+        ILicenciasRepository Licencias { get; }
         void Save();
     }
 }

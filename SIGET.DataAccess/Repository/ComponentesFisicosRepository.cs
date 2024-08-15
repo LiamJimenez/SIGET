@@ -2,8 +2,6 @@
 using SIGET.DataAccess.Repository.IRepository;
 using SIGET.Models;
 using SIGET.Repository;
-using SIGET.Models;
-using Practica.DataAccess.Repository.IRepository;
 
 
 namespace SIGET.Repository
@@ -18,7 +16,18 @@ namespace SIGET.Repository
 
         public void Update(ComponentesFisicos obj)
         {
-            _db.componentesfisicos.Update(obj);
+            var objFromDb = _db.componentesfisicos.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Nombre = obj.Nombre;
+                objFromDb.Cantidad = obj.Cantidad;
+                objFromDb.PuntoReabastecimiento = obj.PuntoReabastecimiento;
+                objFromDb.Descripcion = obj.Descripcion;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
     }
 }

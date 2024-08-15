@@ -28,6 +28,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\colaborador\" />
     <Folder Include="wwwroot\images\componentesfisicos\" />
+    <Folder Include="wwwroot\images\licencia\" />
   </ItemGroup>
 
 </Project>
