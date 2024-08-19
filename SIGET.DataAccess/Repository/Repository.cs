@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SIGET.DataAccess.Data;
-using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
 using System.Linq.Expressions;
 

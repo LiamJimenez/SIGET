@@ -4,8 +4,6 @@
     ViewData["Title"] = "Componentes";
 }
 
-<h2 class="text-center mb-4">Detalles del Colaborador</h2>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -17,13 +15,20 @@
                     </div>
                 }
                 <div class="card-body">
-                    <h4 class="card-title text-center mb-4">Información del Colaborador</h4>
+                    <h4 class="card-title text-center mb-4">Información del Componente</h4>
                     <dl class="row">
                         <dt class="col-sm-4 collaborator-label">Nombre:</dt>
                         <dd class="col-sm-8">@Model.Nombre</dd>
 
-                        <dt class="col-sm-4 collaborator-label">Dirección:</dt>
+                        <dt class="col-sm-4 collaborator-label">Descripcion:</dt>
+                        <dd class="col-sm-8">@Model.Descripcion</dd>
+
+                        <dt class="col-sm-4 collaborator-label">Cantidad:</dt>
                         <dd class="col-sm-8">@Model.Cantidad</dd>
+
+                        <dt class="col-sm-4 collaborator-label">Punto de Reabastecimiento:</dt>
+                        <dd class="col-sm-8">@Model.PuntoReabastecimiento</dd>
+
                     </dl>
                 </div>
                 <div class="card-footer text-center collaborator-footer">

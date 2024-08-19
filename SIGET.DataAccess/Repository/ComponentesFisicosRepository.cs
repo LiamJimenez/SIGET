@@ -16,18 +16,7 @@ namespace SIGET.Repository
 
         public void Update(ComponentesFisicos obj)
         {
-            var objFromDb = _db.componentesfisicos.FirstOrDefault(u => u.Id == obj.Id);
-            if (objFromDb != null)
-            {
-                objFromDb.Nombre = obj.Nombre;
-                objFromDb.Cantidad = obj.Cantidad;
-                objFromDb.PuntoReabastecimiento = obj.PuntoReabastecimiento;
-                objFromDb.Descripcion = obj.Descripcion;
-                if (obj.ImageUrl != null)
-                {
-                    objFromDb.ImageUrl = obj.ImageUrl;
-                }
-            }
+            _db.componentesfisicos.Update(obj);
         }
     }
 }

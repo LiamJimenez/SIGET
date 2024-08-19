@@ -4,12 +4,16 @@
     ViewData["Title"] = "Licencias";
 }
 
-<h2 class="text-center mb-4">Detalles de la Licencia</h2>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card collaborator-card">
+                @if (Model.ImageUrl != null)
+                {
+                    <div class="card-header text-center collaborator-header">
+                        <img src="@Model.ImageUrl" class="collaborator-image img-fluid " alt="Imagen de la licencia" style="max-width: 150px; height: auto;" />
+                    </div>
+                }
                 
                 <div class="card-body">
                     <h4 class="card-title text-center mb-4">Información de la Licencia</h4>
@@ -43,4 +47,3 @@
 @section Scripts {
     <script src="~/js/licencias.js"></script>
 }
-

@@ -1,7 +1,6 @@
 ﻿using Practica.DataAccess.Repository;
 using Practica.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
-using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
 using SIGET.Repository;
 
@@ -20,7 +19,6 @@ namespace SIGET.DataAccess.Repository
             Colaboradores = new ColaboradoresRepository(_db);
             ComponentesFisicos = new ComponentesFisicosRepository(_db);
             Licencias = new LicenciasRepository(_db);
-
         }
 
         public void Save()

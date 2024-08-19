@@ -29,7 +29,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-
             ComponentesFisicosVM componentesfisicosVM = new()
             {
                 ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
@@ -49,8 +48,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 return View(componentesfisicosVM);
             }
         }
-
-
         [HttpPost]
         public IActionResult Upsert(ComponentesFisicosVM componentesfisicosVM, IFormFile? file)
         {
@@ -90,16 +87,11 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     _unitOfWork.ComponentesFisicos.Update(componentesfisicosVM.ComponentesFisicos);
                 }
                 _unitOfWork.Save();
-                TempData["exito"] = "Componente agregado correctamente";
+                TempData["exito"] = "Componente creado correctamente";
                 return RedirectToAction("Index");
             }
             else
             {
-                componentesfisicosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Nombre,
-                    Value = u.Id.ToString()
-                });
                 return View(componentesfisicosVM);
             }
         }
