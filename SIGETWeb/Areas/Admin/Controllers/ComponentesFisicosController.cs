@@ -58,7 +58,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string componentesfisicosPath = Path.Combine(wwwRootPath, @"images\componentesfisicos");
-
+                    
                     if (!string.IsNullOrEmpty(componentesfisicosVM.ComponentesFisicos.ImageUrl))
                     {
                         var oldImagePath =

@@ -4,23 +4,26 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2">Listado de Componentes</h2>
+                <h2 class="text-white py-2">Hardware</h2>
             </div>
         </div>
     </div>
     <div class="card-body p-4">
-        <div class="row pb-3">
-            <div class="col-6">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            
+            <div class="custom-switch">
+                <input type="checkbox" id="switchLicencias" class="custom-switch-input">
+                <label for="switchLicencias" class="custom-switch-label"></label>
+                <span class="custom-switch-description">Software</span>
             </div>
-            <div class="col-6 text-end">
-                <a asp-controller="ComponentesFisicos" asp-action="Upsert" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i>  Agregar Componente
-                </a>
-            </div>
+            
+            <a asp-controller="ComponentesFisicos" asp-action="Upsert" class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-circle"></i> Agregar Componente
+            </a>
         </div>
 
-        <table id="myTable" class="table table-bordered table-striped" style="width:100%">
-            <thead>
+        <table id="componenteTabla" class="table table-bordered table-striped" style="width:100%">
+            <thead class="bg-dark text-white">
                 <tr>
                     <th>Nombre</th>
                     <th>Cantidad</th>
@@ -33,7 +36,6 @@
                     <tr>
                         <td>@obj.Nombre</td>
                         <td>@obj.Cantidad</td>
-
                         <td>
                             <div class="w-75 btn-group" role="group">
                                 <a asp-controller="ComponentesFisicos" asp-action="Detalles" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
@@ -45,14 +47,16 @@
                 }
             </tbody>
         </table>
-        <div class="w-75 btn-group" role="group">
-            <a asp-controller="Licencias" asp-action="Index" class="btn btn-primary mx-2">
-                Licencias
-            </a>
-        </div>
     </div>
 </div>
 
 @section Scripts {
     <script src="~/js/componentefisico.js"></script>
+    <script>
+        document.getElementById('switchLicencias').addEventListener('change', function () {
+            if (this.checked) {
+                window.location.href = '@Url.Action("Index", "Licencias")';
+            }
+        });
+    </script>
 }

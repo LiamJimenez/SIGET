@@ -1,6 +1,55 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.custom-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.custom-switch-input {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+}
+
+.custom-switch-label {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #ddd;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .custom-switch-label::before {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+.custom-switch-input:checked + .custom-switch-label {
+    background: #4CAF50;
+}
+
+    .custom-switch-input:checked + .custom-switch-label::before {
+        transform: translateX(24px);
+    }
+
+.custom-switch-description {
+    margin-left: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+
 .divider-text:before,
 .divider-text::after {
     color: white;

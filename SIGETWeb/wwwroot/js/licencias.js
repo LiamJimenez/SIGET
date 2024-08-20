@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#myTable').DataTable();
+    $('#licenciaTabla').DataTable({ lengthChange: false, info: false });
 });
 function Delete(id) {
     if (confirm("¿Estás seguro de que deseas eliminar este colaborador?")) {

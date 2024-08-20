@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#myTable').DataTable();
+    $('#componenteTabla').DataTable({ lengthChange: false, info: false });
 });
 
 function Delete(id) {
