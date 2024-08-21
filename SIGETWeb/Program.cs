@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Practica.DataAccess.Repository.IRepository;
+using SIGET.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository;
 using Microsoft.AspNetCore.Identity;

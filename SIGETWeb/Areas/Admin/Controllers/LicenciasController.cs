@@ -2,12 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
-using Practica.DataAccess.Repository.IRepository;
-using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
+using SIGET.DataAccess.Data;
 using SIGET.Models;
 using SIGET.Models.ViewModel;
-
 
 namespace SIGETWeb.Areas.Admin.Controllers
 {

@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SIGET.DataAccess\SIGET.DataAccess.csproj" />
+    <ProjectReference Include="..\SIGET.Utility\SIGET.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

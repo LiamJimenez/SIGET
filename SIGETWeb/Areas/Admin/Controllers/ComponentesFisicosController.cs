@@ -2,9 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
-using Practica.DataAccess.Repository.IRepository;
-using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
+using SIGET.DataAccess.Data;
 using SIGET.Models;
 using SIGET.Models.ViewModel;
 
@@ -58,7 +57,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string componentesfisicosPath = Path.Combine(wwwRootPath, @"images\componentesfisicos");
-                    
+
                     if (!string.IsNullOrEmpty(componentesfisicosVM.ComponentesFisicos.ImageUrl))
                     {
                         var oldImagePath =
@@ -111,8 +110,8 @@ namespace SIGETWeb.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<ComponentesFisicos> ComponentesfisicosList = _unitOfWork.ComponentesFisicos.GetAll(includeProperties: "ComponentesFisicos").ToList();
-            return Json(new { data = ComponentesfisicosList });
+            List<ComponentesFisicos> objComponentesfisicosList = _unitOfWork.ComponentesFisicos.GetAll(includeProperties: "ComponenteFisico").ToList();
+            return Json(new { data = objComponentesfisicosList });
         }
 
         [HttpDelete]

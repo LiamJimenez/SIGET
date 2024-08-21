@@ -1,5 +1,5 @@
-﻿using Practica.DataAccess.Repository;
-using Practica.DataAccess.Repository.IRepository;
+﻿using SIGET.DataAccess.Repository;
+using SIGET.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
 using SIGET.DataAccess.Repository.IRepository;
 using SIGET.Repository;
