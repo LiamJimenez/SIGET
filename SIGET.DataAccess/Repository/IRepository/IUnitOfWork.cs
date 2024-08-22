@@ -13,6 +13,7 @@ namespace SIGET.DataAccess.Repository.IRepository
         IColaboradoresRepository Colaboradores { get; }
         IComponentesFisicosRepository ComponentesFisicos { get; }
         ILicenciasRepository Licencias { get; }
+        IServiciosRepository Servicios { get; }
         void Save();
     }
 }

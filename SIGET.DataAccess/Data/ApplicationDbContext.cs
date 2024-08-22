@@ -16,6 +16,7 @@ namespace SIGET.DataAccess.Data
         public DbSet<Colaboradores> colaboradores { get; set; }
         public DbSet<ComponentesFisicos> componentesfisicos { get; set; }
         public DbSet<Licencias> licencias { get; set; }
+        public DbSet<Servicios> servicios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,18 @@ namespace SIGET.DataAccess.Data
                     Nombre = "Liam",
                     FechaExpiracion = new DateTime(2025, 1, 1),
                     FechaRenovacion = new DateTime(2024, 1, 1),
+                    ImageUrl = "",
+                }
+                );
+            modelBuilder.Entity<Servicios>().HasData(
+                new Servicios
+                {
+                    Nombre = "Servicio 1",
+                    Id = 1,
+                    ComponentesFisicosId = 1,
+                    LicenciasId = 1,
+                    Descripcion = "",
+                    Precio = 100,
                     ImageUrl = "",
                 }
                 );

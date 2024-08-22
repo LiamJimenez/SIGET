@@ -30,6 +30,7 @@
     <Folder Include="wwwroot\images\colaborador\" />
     <Folder Include="wwwroot\images\componentesfisicos\" />
     <Folder Include="wwwroot\images\licencia\" />
+    <Folder Include="wwwroot\images\servicio\" />
   </ItemGroup>
 
 </Project>
