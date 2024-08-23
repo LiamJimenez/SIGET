@@ -12,8 +12,8 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240822180745_AgregarTablaServicios")]
-    partial class AgregarTablaServicios
+    [Migration("20240823150023_ValoresDefaultServicio")]
+    partial class ValoresDefaultServicio
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -310,11 +310,11 @@ namespace SIGET.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Cantidad = 20,
-                            Descripcion = "Este es un Disco Duro SSD",
+                            Cantidad = 0,
+                            Descripcion = "",
                             ImageUrl = "",
-                            Nombre = "Disco Duro SSD",
-                            PuntoReabastecimiento = 5
+                            Nombre = "Ninguna",
+                            PuntoReabastecimiento = 0
                         },
                         new
                         {
@@ -360,7 +360,7 @@ namespace SIGET.DataAccess.Migrations
                             FechaExpiracion = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaRenovacion = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
-                            Nombre = "Liam"
+                            Nombre = "Ninguna"
                         });
                 });
 
@@ -373,14 +373,24 @@ namespace SIGET.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ComponentesFisicosId")
+                        .IsRequired()!
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("LicenciasId")
+                        .IsRequired()!
                         .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Precio")
                         .HasColumnType("int");
@@ -397,9 +407,11 @@ namespace SIGET.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ComponentesFisicosId = 1,
-                            Descripcion = "",
+                            ComponentesFisicosId = 2,
+                            Descripcion = "Descripscion",
+                            ImageUrl = "",
                             LicenciasId = 1,
+                            Nombre = "Nuevo Servicio",
                             Precio = 100
                         });
                 });
@@ -459,12 +471,14 @@ namespace SIGET.DataAccess.Migrations
                 {
                     b.HasOne("SIGET.Models.ComponentesFisicos", "ComponentesFisicos")
                         .WithMany()
+                        .IsRequired()!
                         .HasForeignKey("ComponentesFisicosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SIGET.Models.Licencias", "Licencias")
                         .WithMany()
+                        .IsRequired()!
                         .HasForeignKey("LicenciasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240823142421_NuevoServicio")]
+    partial class NuevoServicio
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,7 +261,7 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("colaboradores", (string)null);
+                    b.ToTable("colaboradores");
 
                     b.HasData(
                         new
@@ -301,17 +304,17 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("componentesfisicos", (string)null);
+                    b.ToTable("componentesfisicos");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Cantidad = 0,
-                            Descripcion = "",
+                            Cantidad = 20,
+                            Descripcion = "Este es un Disco Duro SSD",
                             ImageUrl = "",
-                            Nombre = "Ninguna",
-                            PuntoReabastecimiento = 0
+                            Nombre = "Disco Duro SSD",
+                            PuntoReabastecimiento = 5
                         },
                         new
                         {
@@ -348,7 +351,7 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("licencias", (string)null);
+                    b.ToTable("licencias");
 
                     b.HasData(
                         new
@@ -357,7 +360,7 @@ namespace SIGET.DataAccess.Migrations
                             FechaExpiracion = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaRenovacion = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ImageUrl = "",
-                            Nombre = "Ninguna"
+                            Nombre = "Liam"
                         });
                 });
 
@@ -396,19 +399,7 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasIndex("LicenciasId");
 
-                    b.ToTable("servicios", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ComponentesFisicosId = 2,
-                            Descripcion = "Descripscion",
-                            ImageUrl = "",
-                            LicenciasId = 1,
-                            Nombre = "Nuevo Servicio",
-                            Precio = 100
-                        });
+                    b.ToTable("servicios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SIGET.Models
 {
     public class ComponentesFisicos
-    {
+    {   
         [Key]
         public int Id { get; set; }
         [Required]

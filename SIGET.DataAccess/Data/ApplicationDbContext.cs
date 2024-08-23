@@ -39,11 +39,11 @@ namespace SIGET.DataAccess.Data
                 new ComponentesFisicos
                 {
                     Id = 1,
-                    Nombre = "Disco Duro SSD",
-                    Cantidad = 20,
-                    PuntoReabastecimiento = 5,
+                    Nombre = "Disco SSD",
+                    Cantidad = 0,
+                    PuntoReabastecimiento = 0,
                     ImageUrl = "",
-                    Descripcion = "Este es un Disco Duro SSD",
+                    Descripcion = "Descrpcion",
                 },
                 new ComponentesFisicos
                 {
@@ -59,7 +59,7 @@ namespace SIGET.DataAccess.Data
                 new Licencias
                 {
                     Id = 1,
-                    Nombre = "Liam",
+                    Nombre = "Office 360",
                     FechaExpiracion = new DateTime(2025, 1, 1),
                     FechaRenovacion = new DateTime(2024, 1, 1),
                     ImageUrl = "",
@@ -68,15 +68,14 @@ namespace SIGET.DataAccess.Data
             modelBuilder.Entity<Servicios>().HasData(
                 new Servicios
                 {
-                    Nombre = "Servicio 1",
                     Id = 1,
+                    Nombre = "Nuevo Servicio",
                     ComponentesFisicosId = 1,
-                    LicenciasId = 1,
-                    Descripcion = "",
+                    Descripcion = "Descripscion",
                     Precio = 100,
                     ImageUrl = "",
                 }
-                );
+            );
         }
     }
 }

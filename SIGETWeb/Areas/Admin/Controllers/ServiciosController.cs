@@ -7,7 +7,6 @@ using SIGET.DataAccess.Data;
 using SIGET.Models;
 using SIGET.Models.ViewModel;
 
-
 namespace SIGETWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -29,7 +28,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-
             ServiciosVM serviciosVM = new()
             {
                 ServiciosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
@@ -77,7 +75,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    serviciosVM.Servicios.ImageUrl = @"\images\colaborador\" + fileName;
+                    serviciosVM.Servicios.ImageUrl = @"\images\servicio\" + fileName;
                 }
 
                 if (serviciosVM.Servicios.Id == 0)
