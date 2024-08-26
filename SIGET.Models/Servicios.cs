@@ -9,18 +9,17 @@ using System.Threading.Tasks;
 
 namespace SIGET.Models
 {
-
     public class Servicios
     {
         [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int ComponentesFisicosId { get; set; }
 
+        public int? ComponentesFisicosId { get; set; } = null;
         [ValidateNever]
         public ComponentesFisicos ComponentesFisicos { get; set; }
 
-        public int LicenciasId { get; set; }
+        public int? LicenciasId { get; set; } = null;
         [ValidateNever]
         public Licencias Licencias { get; set; }
 

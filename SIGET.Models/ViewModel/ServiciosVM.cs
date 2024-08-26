@@ -12,6 +12,6 @@ namespace SIGET.Models.ViewModel
     {
         public Servicios Servicios { get; set; }
         [ValidateNever]
-        public IEnumerable<SelectListItem> ServiciosList { get; set; }
+        public IEnumerable<SelectListItem> ComponentesFisicosList { get; set; }
     }
 }

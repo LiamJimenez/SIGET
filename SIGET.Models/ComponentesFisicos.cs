@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace SIGET.Models
         public int Cantidad { get; set; }
         [Required]
         public int PuntoReabastecimiento { get; set; }
-        [Required]
+        [ValidateNever]
         public string ImageUrl { get; set; }
         [Required]
         public string Descripcion { get; set; }

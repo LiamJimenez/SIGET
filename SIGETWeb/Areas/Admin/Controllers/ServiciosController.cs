@@ -22,7 +22,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll().ToList();
+            List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos").ToList();
             return View(objServiciosList);
         }
 
@@ -30,7 +30,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
         {
             ServiciosVM serviciosVM = new()
             {
-                ServiciosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
+                ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
@@ -92,7 +92,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
             else
             {
-                serviciosVM.ServiciosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
+                serviciosVM.ComponentesFisicosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
@@ -101,6 +101,16 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
         }
 
+        #region API CALLS
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Servicios> objComponentesFisicosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos").ToList();
+            return Json(new { data = objComponentesFisicosList });
+        }
+
+        [HttpDelete]
         public IActionResult Detalles(int id)
         {
             var servicios = _unitOfWork.Servicios.Get(c => c.Id == id);
@@ -109,37 +119,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 return NotFound();
             }
             return View(servicios);
-        }
-
-        #region API CALLS
-
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll(includeProperties: "Colaborador").ToList();
-            return Json(new { data = objColaboradoresList });
-        }
-
-        [HttpDelete]
-        public IActionResult Delete(int? id)
-        {
-            var colaboradorToBeDeleted = _unitOfWork.Colaboradores.Get(u => u.Id == id);
-            if (colaboradorToBeDeleted == null)
-            {
-                return Json(new { success = false, message = "Error al eliminar al colaborador" });
-            }
-
-            var oldImagePath = Path.Combine(_webHostEnvironment.WebRootPath, colaboradorToBeDeleted.ImageUrl.TrimStart('\\'));
-
-            if (System.IO.File.Exists(oldImagePath))
-            {
-                System.IO.File.Delete(oldImagePath);
-            }
-
-            _unitOfWork.Colaboradores.Remove(colaboradorToBeDeleted);
-            _unitOfWork.Save();
-
-            return Json(new { success = true, message = "Eliminado exitosamente" });
         }
 
         #endregion 
