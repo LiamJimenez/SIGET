@@ -19,6 +19,7 @@ namespace SIGET.Models
         [Required]
         public int PuntoReabastecimiento { get; set; }
         [ValidateNever]
+        [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
         [Required]
         public string Descripcion { get; set; }

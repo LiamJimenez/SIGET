@@ -5,7 +5,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
         <div class="row">
             <div class="col-12 text-center">
-                <h2 class="text-white py-2"> @(Model.Servicios.Id != 0 ? "Editar" : "Crear") Servicios</h2>
+                <h2 class="text-white py-2"> @(Model.Servicios.Id != 0 ? "Editar" : "Crear") Servicio</h2>
             </div>
         </div>
     </div>
@@ -16,13 +16,34 @@
             <div class="row">
                 <div class="col-10">
                     <div class="border p-3">
-                        
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Servicios.Nombre" class="form-control border-0 shadow" />
+                            <label asp-for="Servicios.Nombre" class="ms-2"></label>
+                            <span asp-validation-for="Servicios.Nombre" class="text-danger"></span>
+                        </div>
+
                         <div class="form-floating py-2 col-12">
                             <select asp-for="@Model.Servicios.ComponentesFisicosId" asp-items="@Model.ComponentesFisicosList" class="form-select border-0 shadow">
                                 <option disabled selected>--Selecionar Componente--</option>
                             </select>
                             <label asp-for="Servicios.ComponentesFisicosId" class="ms-2"></label>
                             <span asp-validation-for="Servicios.ComponentesFisicosId" class="text-danger"></span>
+                        </div>
+
+                        <div class="py-2 col-12">
+                            <label asp-for="Servicios.Descripcion" class="ms-2 text-muted"></label>
+                            <textarea asp-for="Servicios.Descripcion" class="form-control border-0 shadow"></textarea>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Servicios.Precio" class="form-control border-0 shadow" />
+                            <label asp-for="Servicios.Precio" class="ms-2"></label>
+                            <span asp-validation-for="Servicios.Precio" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <label asp-for="Servicios.ImageUrl" class="p-0">Imagen</label>
+                            <input type="file" name="file" class="form-control" />
                         </div>
                         
                         <div class="row pt-2">
@@ -49,3 +70,16 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

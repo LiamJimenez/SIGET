@@ -22,6 +22,7 @@ namespace SIGET.Models
         [DataType(DataType.Date)]
         public DateTime FechaRenovacion { get; set; }
         [ValidateNever]
+        [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
     }
 }

@@ -2,7 +2,7 @@
     $('#serviciosTabla').DataTable({ lengthChange: false, info: false });
 });
 function Delete(id) {
-    if (confirm("¿Estás seguro de que deseas eliminar este colaborador?")) {
+    if (confirm("¿Estás seguro de que deseas eliminar este servicio?")) {
         $.ajax({
             type: "DELETE",
             url: '/Admin/Servicios/Delete/' + id,
@@ -15,7 +15,7 @@ function Delete(id) {
                 }
             },
             error: function () {
-                alert("Ha ocurrido un error al intentar eliminar el colaborador.");
+                alert("Ha ocurrido un error al intentar eliminar el servicio.");
             }
         });
     }

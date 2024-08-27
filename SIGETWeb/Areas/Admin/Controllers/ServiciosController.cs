@@ -110,7 +110,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return Json(new { data = objComponentesFisicosList });
         }
 
-        [HttpDelete]
         public IActionResult Detalles(int id)
         {
             var servicios = _unitOfWork.Servicios.Get(c => c.Id == id);
@@ -121,7 +120,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return View(servicios);
         }
 
-        #endregion 
-
+        #endregion
     }
 }

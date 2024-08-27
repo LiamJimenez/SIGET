@@ -10,15 +10,17 @@ using System.Threading.Tasks;
 namespace SIGET.Models
 {
     public class Servicios
-    {
+    {   
         [Key]
         public int Id { get; set; }
         public string Nombre { get; set; }
-
+        
+        [Display(Name = "Elija componente")]
         public int? ComponentesFisicosId { get; set; } = null;
         [ValidateNever]
         public ComponentesFisicos ComponentesFisicos { get; set; }
 
+        [Display(Name = "Elija licencia")]
         public int? LicenciasId { get; set; } = null;
         [ValidateNever]
         public Licencias Licencias { get; set; }
@@ -29,6 +31,7 @@ namespace SIGET.Models
         [Required]
         public int Precio { get; set; }
         [ValidateNever]
+        [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
     }
 }

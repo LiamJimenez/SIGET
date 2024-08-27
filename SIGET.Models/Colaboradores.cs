@@ -18,6 +18,7 @@ namespace SIGET.Models
         [Required]
         public string Area { get; set; }
         [ValidateNever]
+        [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
         
     }
