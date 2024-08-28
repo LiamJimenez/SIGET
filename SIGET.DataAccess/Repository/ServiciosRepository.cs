@@ -14,7 +14,19 @@ namespace SIGET.Repository
 
         public void Update(Servicios obj)
         {
-            _db.servicios.Update(obj);
+            var objFromDb = _db.servicios.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDb != null)
+            {
+                objFromDb.Nombre = obj.Nombre;
+                objFromDb.ComponentesFisicosId = obj.ComponentesFisicosId;
+                objFromDb.LicenciasId = obj.LicenciasId;
+                objFromDb.Descripcion = obj.Descripcion;
+                objFromDb.Precio = obj.Precio;
+                if (obj.ImageUrl != null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+            }
         }
     }
 }

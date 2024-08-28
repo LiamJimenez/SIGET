@@ -120,6 +120,30 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return View(servicios);
         }
 
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var serviciosToBeDeleted = _unitOfWork.Servicios.Get(u => u.Id == id);
+            if (serviciosToBeDeleted == null)
+            {
+                return Json(new { success = false, message = "Error eliminando servicio" });
+            }
+
+            var oldImagePath =
+                            Path.Combine(_webHostEnvironment.WebRootPath,
+                            serviciosToBeDeleted.ImageUrl.TrimStart('\\'));
+
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.Servicios.Remove(serviciosToBeDeleted);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Eliminado correctamente" });
+        }
+
         #endregion
     }
 }
