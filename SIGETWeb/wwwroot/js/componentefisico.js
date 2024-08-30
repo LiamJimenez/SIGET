@@ -16,7 +16,7 @@ function Delete(id) {
                 }
             },
             error: function () {
-                alert("Ha ocurrido un error al intentar eliminar el componente.");
+                alert("Error, este componente actualmente esta siendo utilizado en un servicio.");
             }
         });
     }

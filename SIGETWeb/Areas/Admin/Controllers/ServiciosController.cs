@@ -22,7 +22,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos").ToList();
+            List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos, Licencias").ToList();
             return View(objServiciosList);
         }
 
@@ -31,6 +31,11 @@ namespace SIGETWeb.Areas.Admin.Controllers
             ServiciosVM serviciosVM = new()
             {
                 ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Nombre,
+                    Value = u.Id.ToString()
+                }),
+                LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
@@ -78,6 +83,16 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     serviciosVM.Servicios.ImageUrl = @"\images\servicio\" + fileName;
                 }
 
+               
+                if (serviciosVM.Servicios.ComponentesFisicosId == 0)
+                {
+                    serviciosVM.Servicios.ComponentesFisicosId = null;
+                }
+                if (serviciosVM.Servicios.LicenciasId == 0)
+                {
+                    serviciosVM.Servicios.LicenciasId = null;
+                }
+
                 if (serviciosVM.Servicios.Id == 0)
                 {
                     _unitOfWork.Servicios.Add(serviciosVM.Servicios);
@@ -92,7 +107,12 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
             else
             {
-                serviciosVM.ComponentesFisicosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
+                serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Nombre,
+                    Value = u.Id.ToString()
+                });
+                serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
@@ -101,14 +121,17 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
         }
 
+
+
         #region API CALLS
 
         [HttpGet]
         public IActionResult GetAll()
         {
-            List<Servicios> objComponentesFisicosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos").ToList();
-            return Json(new { data = objComponentesFisicosList });
+            List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos, Licencias").ToList();
+            return Json(new { data = objServiciosList });
         }
+
 
         public IActionResult Detalles(int id)
         {

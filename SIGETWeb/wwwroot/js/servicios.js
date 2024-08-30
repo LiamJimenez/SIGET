@@ -20,3 +20,23 @@ function Delete(id) {
         });
     }
 }
+
+document.getElementById('componentType').addEventListener('change', function () {
+    var selectedValue = this.value;
+    var componentesFisicos = document.getElementById('componentesFisicos');
+    var licencias = document.getElementById('licencias');
+
+    if (selectedValue === 'fisico') {
+        componentesFisicos.classList.remove('d-none');
+        licencias.classList.add('d-none');
+        document.getElementById('licencias').querySelector('select').value = ''; 
+    } else if (selectedValue === 'licencia') {
+        licencias.classList.remove('d-none');
+        componentesFisicos.classList.add('d-none');
+        document.getElementById('componentesFisicos').querySelector('select').value = ''; 
+    }
+});
+
+
+
+

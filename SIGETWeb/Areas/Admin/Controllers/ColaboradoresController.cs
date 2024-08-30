@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using SIGET.DataAccess.Repository.IRepository;
 using SIGET.DataAccess.Data;
-using SIGET.DataAccess.Repository.IRepository;
 using SIGET.Models;
 using SIGET.Models.ViewModel;
 
