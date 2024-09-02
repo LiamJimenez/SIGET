@@ -12,6 +12,7 @@ namespace SIGET.DataAccess.Repository
         public IComponentesFisicosRepository ComponentesFisicos { get; private set; }
         public ILicenciasRepository Licencias { get; private set; }
         public IServiciosRepository Servicios { get; private set; }
+        public IPedidosRepository Pedidos { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {      
@@ -20,6 +21,7 @@ namespace SIGET.DataAccess.Repository
             ComponentesFisicos = new ComponentesFisicosRepository(_db);
             Licencias = new LicenciasRepository(_db);
             Servicios = new ServiciosRepository(_db);
+            Pedidos = new PedidosRepository(_db);
         }
 
         public void Save()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240902150959_AgregarModeloTablaDePedidos")]
+    partial class AgregarModeloTablaDePedidos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,10 +251,6 @@ namespace SIGET.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -272,20 +271,8 @@ namespace SIGET.DataAccess.Migrations
                             Correo = "correo@gmail.com",
                             Direccion = "Mi direccion",
                             ImageUrl = "",
-                            Ip = "10.2.2",
                             Nombre = "Liam",
                             Telefono = "809-899-8828"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Area = "Recursos Humanos",
-                            Correo = "Rodrigo@gmail.com",
-                            Direccion = "Direccion de Rodrigo",
-                            ImageUrl = "",
-                            Ip = "10.1.1",
-                            Nombre = "Rodrigo",
-                            Telefono = "829-584-9008"
                         });
                 });
 

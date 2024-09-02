@@ -25,7 +25,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos, Licencias").ToList();
             return View(objServiciosList);
         }
-
+            
         public IActionResult Upsert(int? id)
         {
             ServiciosVM serviciosVM = new()
@@ -83,7 +83,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     serviciosVM.Servicios.ImageUrl = @"\images\servicio\" + fileName;
                 }
 
-               
                 if (serviciosVM.Servicios.ComponentesFisicosId == 0)
                 {
                     serviciosVM.Servicios.ComponentesFisicosId = null;
@@ -110,7 +109,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
-                    Value = u.Id.ToString()
+                     Value = u.Id.ToString()
                 });
                 serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
                 {
@@ -121,8 +120,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
         }
 
-
-
         #region API CALLS
 
         [HttpGet]
@@ -131,7 +128,6 @@ namespace SIGETWeb.Areas.Admin.Controllers
             List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos, Licencias").ToList();
             return Json(new { data = objServiciosList });
         }
-
 
         public IActionResult Detalles(int id)
         {

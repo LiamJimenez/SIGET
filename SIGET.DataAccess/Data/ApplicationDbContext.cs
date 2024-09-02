@@ -17,10 +17,10 @@ namespace SIGET.DataAccess.Data
         public DbSet<ComponentesFisicos> componentesfisicos { get; set; }
         public DbSet<Licencias> licencias { get; set; }
         public DbSet<Servicios> servicios { get; set; }
+        public DbSet<Pedidos> pedidos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Colaboradores>().HasData(
@@ -33,8 +33,20 @@ namespace SIGET.DataAccess.Data
                     Correo = "correo@gmail.com",
                     Area = "Tecnologia",
                     ImageUrl = "",
-                }
-                );
+                    Ip = "1.1.1",
+                },
+                new Colaboradores
+                {
+                    Id = 4,
+                    Nombre = "Rodrigo",
+                    Direccion = "Direccion de Rodrigo",
+                    Telefono = "809-899-8828",
+                    Correo = "Rodrigo@gmail.com",
+                    Area = "Recuersos Humanos",
+                    ImageUrl = "",
+                    Ip = "2.2.2",
+                },
+
             modelBuilder.Entity<ComponentesFisicos>().HasData(
                 new ComponentesFisicos
                 {
@@ -75,7 +87,16 @@ namespace SIGET.DataAccess.Data
                     Precio = 100,
                     ImageUrl = "",
                 }
-            );
+                );
+            modelBuilder.Entity<Pedidos>().HasData(
+                new Pedidos
+                {
+                    Id = 1,
+                    ColaboradoresId = 1,
+                    ServiciosId = 1,
+                    Cantidad = 10,
+                }
+                );
         }
     }
 }

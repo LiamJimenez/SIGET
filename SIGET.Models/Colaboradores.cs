@@ -20,6 +20,7 @@ namespace SIGET.Models
         [ValidateNever]
         [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
-        
+        [Required]
+        public string Ip { get; set; }
     }
 }
