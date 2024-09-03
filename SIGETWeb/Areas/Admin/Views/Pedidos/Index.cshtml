@@ -1,5 +1,58 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@using SIGET.Models
+@model IEnumerable<Pedidos>
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Pedidos</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Pedidos" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>  Agregar Pedido
+                </a>
+            </div>
+        </div>
+
+        <table id="pedidosTabla" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Colaborador</th>
+                    <th>Servicio</th>
+                    <th>Cantidad</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.ColaboradoresId</td>
+                        <td>@obj.ServiciosId</td>
+                        <td>@obj.Cantidad</td>
+
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Pedidos" asp-action="Detalles" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                    <i class="bi bi-person-square"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/pedidos.js"></script>
 }

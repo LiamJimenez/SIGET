@@ -37,16 +37,16 @@ namespace SIGET.DataAccess.Data
                 },
                 new Colaboradores
                 {
-                    Id = 4,
-                    Nombre = "Rodrigo",
-                    Direccion = "Direccion de Rodrigo",
-                    Telefono = "809-899-8828",
-                    Correo = "Rodrigo@gmail.com",
-                    Area = "Recuersos Humanos",
+                    Id = 6,
+                    Nombre = "Josue",
+                    Direccion = "Direccion de Josue",
+                    Telefono = "829-365-7824",
+                    Correo = "Josue@gmail.com",
+                    Area = "Tecnologia",
                     ImageUrl = "",
-                    Ip = "2.2.2",
-                },
-
+                    Ip = "3.2.6",
+                }
+                );
             modelBuilder.Entity<ComponentesFisicos>().HasData(
                 new ComponentesFisicos
                 {

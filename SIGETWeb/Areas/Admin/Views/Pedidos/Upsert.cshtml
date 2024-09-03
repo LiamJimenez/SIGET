@@ -1,5 +1,64 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using SIGET.Models.ViewModel
+@model PedidosVM
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2"> @(Model.Pedidos.Id != 0 ? "Editar" : "Crear") Pedido</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            <input asp-for="Pedidos.Id" hidden />
+            <div class="row">
+                <div class="col-10">
+                    <div class="border p-3">
+                       
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.Pedidos.ColaboradoresId" asp-items="@Model.ColaboradoresList" class="form-select border-0 shadow">
+                                <option disabled selected>--Seleccionar Colaborador--</option>
+                            </select>
+                            <label asp-for="Pedidos.ColaboradoresId" class="ms-2"></label>
+                            <span asp-validation-for="Pedidos.ColaboradoresId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <select asp-for="@Model.Pedidos.ServiciosId" asp-items="@Model.ServiciosList" class="form-select border-0 shadow">
+                                <option disabled selected>--Seleccionar Servicio--</option>
+                            </select>
+                            <label asp-for="Pedidos.ServiciosId" class="ms-2"></label>
+                            <span asp-validation-for="Pedidos.ServiciosId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating py-2 col-12">
+                            <input asp-for="Pedidos.Cantidad" class="form-control border-0 shadow" />
+                            <label asp-for="Pedidos.Cantidad" class="ms-2"></label>
+                            <span asp-validation-for="Pedidos.Cantidad" class="text-danger"></span>
+                        </div>
+
+                        <div class="row pt-2">
+                            <div class="col-6 col-md-3">
+                                @if (Model.Pedidos.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Editar</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Crear</button>
+                                }
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <a asp-controller="Pedidos" asp-action="Index" class="btn btn-outline-primary border  form-control">
+                                    Atras
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

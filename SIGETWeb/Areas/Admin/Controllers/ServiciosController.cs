@@ -25,7 +25,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             List<Servicios> objServiciosList = _unitOfWork.Servicios.GetAll(includeProperties: "ComponentesFisicos, Licencias").ToList();
             return View(objServiciosList);
         }
-            
+        
         public IActionResult Upsert(int? id)
         {
             ServiciosVM serviciosVM = new()
@@ -59,6 +59,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
+
                 if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
@@ -66,9 +67,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
                     if (!string.IsNullOrEmpty(serviciosVM.Servicios.ImageUrl))
                     {
-                        var oldImagePath =
-                            Path.Combine(wwwRootPath, serviciosVM.Servicios.ImageUrl.TrimStart('\\'));
-
+                        var oldImagePath = Path.Combine(wwwRootPath, serviciosVM.Servicios.ImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
@@ -83,13 +82,31 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     serviciosVM.Servicios.ImageUrl = @"\images\servicio\" + fileName;
                 }
 
-                if (serviciosVM.Servicios.ComponentesFisicosId == 0)
+                if (serviciosVM.Servicios.ComponentesFisicosId.HasValue)
                 {
+
+                    serviciosVM.Servicios.LicenciasId = null;
+                }
+                else if (serviciosVM.Servicios.LicenciasId.HasValue)
+                {
+
                     serviciosVM.Servicios.ComponentesFisicosId = null;
                 }
-                if (serviciosVM.Servicios.LicenciasId == 0)
+                else
                 {
-                    serviciosVM.Servicios.LicenciasId = null;
+                    ModelState.AddModelError("", "Debe seleccionar un Componente Fisico o una Licencia");
+
+                    serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
+                    {
+                        Text = u.Nombre,
+                        Value = u.Id.ToString()
+                    });
+                    serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
+                    {
+                        Text = u.Nombre,
+                        Value = u.Id.ToString()
+                    });
+                    return View(serviciosVM);
                 }
 
                 if (serviciosVM.Servicios.Id == 0)
@@ -109,7 +126,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
-                     Value = u.Id.ToString()
+                    Value = u.Id.ToString()
                 });
                 serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
                 {
