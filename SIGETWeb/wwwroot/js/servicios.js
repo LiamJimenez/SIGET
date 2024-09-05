@@ -29,11 +29,14 @@ document.getElementById('componentType').addEventListener('change', function () 
     if (selectedValue === 'fisico') {
         componentesFisicos.classList.remove('d-none');
         licencias.classList.add('d-none');
-        document.getElementById('licencias').querySelector('select').value = ''; 
+        document.getElementById('licencias').querySelector('select').value = '';
     } else if (selectedValue === 'licencia') {
         licencias.classList.remove('d-none');
         componentesFisicos.classList.add('d-none');
-        document.getElementById('componentesFisicos').querySelector('select').value = ''; 
+        document.getElementById('componentesFisicos').querySelector('select').value = '';
+    } else {
+        componentesFisicos.classList.add('d-none');
+        licencias.classList.add('d-none');
     }
 });
 

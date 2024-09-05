@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SIGET.Models.ViewModel
 {
-    public class ColaboradorVM
+    public class ComputadoresVM
     {
-        public Colaboradores Colaboradores { get; set; }
+        public Computadores Computadores { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> ComputadoresList { get; set; }
     }

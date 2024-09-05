@@ -15,6 +15,7 @@ namespace SIGET.DataAccess.Repository.IRepository
         ILicenciasRepository Licencias { get; }
         IServiciosRepository Servicios { get; }
         IPedidosRepository Pedidos { get; }
+        IComputadoresRepository Computadores { get; }
         void Save();
     }
 }

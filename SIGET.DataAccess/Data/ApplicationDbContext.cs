@@ -18,6 +18,7 @@ namespace SIGET.DataAccess.Data
         public DbSet<Licencias> licencias { get; set; }
         public DbSet<Servicios> servicios { get; set; }
         public DbSet<Pedidos> pedidos { get; set; }
+        public DbSet<Computadores> computadores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,18 +34,18 @@ namespace SIGET.DataAccess.Data
                     Correo = "correo@gmail.com",
                     Area = "Tecnologia",
                     ImageUrl = "",
-                    Ip = "1.1.1",
+                    ComputadoresId = 2,
                 },
                 new Colaboradores
                 {
-                    Id = 6,
-                    Nombre = "Josue",
-                    Direccion = "Direccion de Josue",
-                    Telefono = "829-365-7824",
-                    Correo = "Josue@gmail.com",
+                    Id = 2,
+                    Nombre = "Juan",
+                    Direccion = "Juan direccion",
+                    Telefono = "809-899-8828",
+                    Correo = "Juan@gmail.com",
                     Area = "Tecnologia",
                     ImageUrl = "",
-                    Ip = "3.2.6",
+                    ComputadoresId = 3,
                 }
                 );
             modelBuilder.Entity<ComponentesFisicos>().HasData(
@@ -55,7 +56,7 @@ namespace SIGET.DataAccess.Data
                     Cantidad = 0,
                     PuntoReabastecimiento = 0,
                     ImageUrl = "",
-                    Descripcion = "Descrpcion",
+                    Descripcion = "Descripcion",
                 },
                 new ComponentesFisicos
                 {
@@ -95,6 +96,14 @@ namespace SIGET.DataAccess.Data
                     ColaboradoresId = 1,
                     ServiciosId = 1,
                     Cantidad = 10,
+                }
+                );
+            modelBuilder.Entity<Computadores>().HasData(
+                new Computadores 
+                {
+                    Id = 5,
+                    Nombre = "LMJP4057",
+                    Ip = "111.857.22.82"
                 }
                 );
         }

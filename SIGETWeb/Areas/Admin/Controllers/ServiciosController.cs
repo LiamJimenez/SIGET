@@ -82,59 +82,52 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     serviciosVM.Servicios.ImageUrl = @"\images\servicio\" + fileName;
                 }
 
-                if (serviciosVM.Servicios.ComponentesFisicosId.HasValue)
+                if (serviciosVM.Servicios.ComponentesFisicosId.HasValue && serviciosVM.Servicios.LicenciasId.HasValue)
                 {
-
-                    serviciosVM.Servicios.LicenciasId = null;
+                    ModelState.AddModelError("", "Solo puede seleccionar un Componente Físico o una Licencia, no ambos");
                 }
-                else if (serviciosVM.Servicios.LicenciasId.HasValue)
+                else if (!serviciosVM.Servicios.ComponentesFisicosId.HasValue && !serviciosVM.Servicios.LicenciasId.HasValue)
                 {
-
-                    serviciosVM.Servicios.ComponentesFisicosId = null;
+                    ModelState.AddModelError("", "Debe seleccionar un Componente Físico o una Licencia");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Debe seleccionar un Componente Fisico o una Licencia");
-
-                    serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
+                    if (serviciosVM.Servicios.ComponentesFisicosId.HasValue)
                     {
-                        Text = u.Nombre,
-                        Value = u.Id.ToString()
-                    });
-                    serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
+                        serviciosVM.Servicios.LicenciasId = null;
+                    }
+                    else if (serviciosVM.Servicios.LicenciasId.HasValue)
                     {
-                        Text = u.Nombre,
-                        Value = u.Id.ToString()
-                    });
-                    return View(serviciosVM);
-                }
+                        serviciosVM.Servicios.ComponentesFisicosId = null;
+                    }
 
-                if (serviciosVM.Servicios.Id == 0)
-                {
-                    _unitOfWork.Servicios.Add(serviciosVM.Servicios);
+                    if (serviciosVM.Servicios.Id == 0)
+                    {
+                        _unitOfWork.Servicios.Add(serviciosVM.Servicios);
+                        TempData["exito"] = "Servicio creado correctamente";
+                    }
+                    else
+                    {
+                        _unitOfWork.Servicios.Update(serviciosVM.Servicios);
+                        TempData["exito"] = "Servicio actualizado correctamente";
+                    }
+                    _unitOfWork.Save();
+                    return RedirectToAction("Index");
                 }
-                else
-                {
-                    _unitOfWork.Servicios.Update(serviciosVM.Servicios);
-                }
-                _unitOfWork.Save();
-                TempData["exito"] = "Servicio agregado correctamente";
-                return RedirectToAction("Index");
             }
-            else
+
+            serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
             {
-                serviciosVM.ComponentesFisicosList = _unitOfWork.ComponentesFisicos.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Nombre,
-                    Value = u.Id.ToString()
-                });
-                serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Nombre,
-                    Value = u.Id.ToString()
-                });
-                return View(serviciosVM);
-            }
+                Text = u.Nombre,
+                Value = u.Id.ToString()
+            });
+            serviciosVM.LicenciasList = _unitOfWork.Licencias.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Nombre,
+                Value = u.Id.ToString()
+            });
+
+            return View(serviciosVM);
         }
 
         #region API CALLS

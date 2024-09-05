@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SIGET.Models
 {
@@ -20,7 +21,10 @@ namespace SIGET.Models
         [ValidateNever]
         [Display(Name = "Imagen")]
         public string ImageUrl { get; set; }
-        [Required]
-        public string Ip { get; set; }
+
+        public int ComputadoresId { get; set; }
+        [ForeignKey("ComputadoresId")]
+        [ValidateNever]
+        public Computadores Computadores { get; set; }
     }
 }

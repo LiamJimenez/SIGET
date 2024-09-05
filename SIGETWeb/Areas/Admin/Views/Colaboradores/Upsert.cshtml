@@ -41,10 +41,13 @@
                             <label asp-for="Colaboradores.Area" class="ms-2"></label>
                             <span asp-validation-for="Colaboradores.Area" class="text-danger"></span>
                         </div>
+
                         <div class="form-floating py-2 col-12">
-                            <input asp-for="Colaboradores.Ip" class="form-control border-0 shadow" />
-                            <label asp-for="Colaboradores.Ip" class="ms-2"></label>
-                            <span asp-validation-for="Colaboradores.Ip" class="text-danger"></span>
+                            <select asp-for="@Model.Colaboradores.ComputadoresId" asp-items="@Model.ComputadoresList" class="form-select border-0 shadow">
+                                <option disabled selected>--Seleccionar Computador--</option>
+                            </select>
+                            <label asp-for="Colaboradores.ComputadoresId" class="ms-2">Computador</label>
+                            <span asp-validation-for="Colaboradores.ComputadoresId" class="text-danger"></span>
                         </div>
                         
                         <div class="form-floating py-2 col-12">

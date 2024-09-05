@@ -23,7 +23,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll().ToList();
+            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll(includeProperties: "Computador").ToList();
             return View(objColaboradoresList);
         }
 
@@ -32,9 +32,9 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
             ColaboradorVM colaboradorVM = new()
             {
-                ColaboradoresList = _unitOfWork.Colaboradores.GetAll().Select(u => new SelectListItem
+                ComputadoresList = _unitOfWork.Computadores.GetAll().Select(u => new SelectListItem
                 {
-                    Text = u.Nombre,
+                    Text = u.Ip,
                     Value = u.Id.ToString()
                 }),
                 Colaboradores = new Colaboradores()
@@ -94,7 +94,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             }
             else
             {
-                colaboradorVM.ColaboradoresList = _unitOfWork.Colaboradores.GetAll().Select(u => new SelectListItem
+                colaboradorVM.ComputadoresList = _unitOfWork.Computadores.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()

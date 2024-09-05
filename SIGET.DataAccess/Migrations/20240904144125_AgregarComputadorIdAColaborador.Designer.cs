@@ -12,8 +12,8 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240903125218_AgregarIpEnTabla")]
-    partial class AgregarIpEnTabla
+    [Migration("20240904144125_AgregarComputadorIdAColaborador")]
+    partial class AgregarComputadorIdAColaborador
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,9 @@ namespace SIGET.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ComputadoresId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Correo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -248,10 +251,6 @@ namespace SIGET.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Ip")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -265,6 +264,8 @@ namespace SIGET.DataAccess.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ComputadoresId");
+
                     b.ToTable("colaboradores");
 
                     b.HasData(
@@ -272,23 +273,23 @@ namespace SIGET.DataAccess.Migrations
                         {
                             Id = 1,
                             Area = "Tecnologia",
+                            ComputadoresId = 2,
                             Correo = "correo@gmail.com",
                             Direccion = "Mi direccion",
                             ImageUrl = "",
-                            Ip = "1.1.1",
                             Nombre = "Liam",
                             Telefono = "809-899-8828"
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 2,
                             Area = "Tecnologia",
-                            Correo = "Josue@gmail.com",
-                            Direccion = "Direccion de Josue",
+                            ComputadoresId = 3,
+                            Correo = "Juan@gmail.com",
+                            Direccion = "Juan direccion",
                             ImageUrl = "",
-                            Ip = "3.2.6",
-                            Nombre = "Josue",
-                            Telefono = "829-365-7824"
+                            Nombre = "Juan",
+                            Telefono = "809-899-8828"
                         });
                 });
 
@@ -327,7 +328,7 @@ namespace SIGET.DataAccess.Migrations
                         {
                             Id = 1,
                             Cantidad = 0,
-                            Descripcion = "Descrpcion",
+                            Descripcion = "Descripcion",
                             ImageUrl = "",
                             Nombre = "Disco SSD",
                             PuntoReabastecimiento = 0
@@ -340,6 +341,35 @@ namespace SIGET.DataAccess.Migrations
                             ImageUrl = "",
                             Nombre = "Otro equipo",
                             PuntoReabastecimiento = 5
+                        });
+                });
+
+            modelBuilder.Entity("SIGET.Models.Computadores", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ip")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("computadores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            Ip = "111.857.22.82",
+                            Nombre = "LMJP4057"
                         });
                 });
 
@@ -513,6 +543,17 @@ namespace SIGET.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SIGET.Models.Colaboradores", b =>
+                {
+                    b.HasOne("SIGET.Models.Computadores", "Computadores")
+                        .WithMany()
+                        .HasForeignKey("ComputadoresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Computadores");
                 });
 
             modelBuilder.Entity("SIGET.Models.Pedidos", b =>

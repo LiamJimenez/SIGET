@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240904143555_AgregarTablaComputador")]
+    partial class AgregarTablaComputador
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,22 +273,11 @@ namespace SIGET.DataAccess.Migrations
                         {
                             Id = 1,
                             Area = "Tecnologia",
-                            ComputadoresId = 2,
+                            ComputadoresId = 5,
                             Correo = "correo@gmail.com",
                             Direccion = "Mi direccion",
                             ImageUrl = "",
                             Nombre = "Liam",
-                            Telefono = "809-899-8828"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Area = "Tecnologia",
-                            ComputadoresId = 3,
-                            Correo = "Juan@gmail.com",
-                            Direccion = "Juan direccion",
-                            ImageUrl = "",
-                            Nombre = "Juan",
                             Telefono = "809-899-8828"
                         });
                 });
