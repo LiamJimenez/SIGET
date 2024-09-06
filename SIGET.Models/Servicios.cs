@@ -20,6 +20,7 @@ namespace SIGET.Models
         [ValidateNever]
         public ComponentesFisicos ComponentesFisicos { get; set; }
 
+
         [Display(Name = "Elija licencia")]
         public int? LicenciasId { get; set; } = null;
         [ValidateNever]

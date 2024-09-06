@@ -26,6 +26,7 @@
                     <th>Telefono</th>
                     <th>Correo</th>
                     <th>Area</th>
+                    <th>Ip Computador</th>
                     <th></th>
                 </tr>
             </thead>
@@ -33,14 +34,14 @@
                 @foreach (var obj in Model)
                 {
                     <tr>
-                        <td>@obj.Nombre</td>
-                        <td>@obj.Telefono</td>
-                        <td>@obj.Correo</td>
-                        <td>@obj.Area</td>
-
+                        <td>@obj.Colaboradores.Nombre</td>
+                        <td>@obj.Colaboradores.Telefono</td>
+                        <td>@obj.Colaboradores.Correo</td>
+                        <td>@obj.Colaboradores.Area</td>
+                        <td>@obj.Computadores.Ip</td>
                         <td>
                             <div class="w-75 btn-group" role="group">
-                                <a asp-controller="Colaboradores" asp-action="Detalles" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <a asp-controller="Colaboradores" asp-action="Detalles" asp-route-id="@obj.Colaboradores.Id" class="btn btn-primary mx-2">
                                     <i class="bi bi-person-square"></i>
                                 </a>
                             </div>

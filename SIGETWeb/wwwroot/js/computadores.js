@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
     $('#computadorTabla').DataTable({ lengthChange: false, info: false });
 });
+
 function Delete(id) {
-    if (confirm("¿Estás seguro de que deseas eliminar este computador?")) {
+    if (confirm("¿Estás seguro de que deseas eliminar este computadores?")) {
         $.ajax({
             type: "DELETE",
             url: '/Admin/Computadores/Delete/' + id,
@@ -15,8 +16,9 @@ function Delete(id) {
                 }
             },
             error: function () {
-                alert("Ha ocurrido un error al intentar eliminar el computador.");
+                alert("Ha ocurrido un error al intentar eliminar el computadores.");
             }
         });
     }
 }
+

@@ -33,6 +33,17 @@ namespace SIGET.Repository
             return query.ToList();
         }
 
+        public IEnumerable<T> GetAllSet(Expression<Func<T, bool>>? filter = null!, string? includeProperties = null, Expression<Func<T, T>>? entity = null)
+        {
+            IQueryable<T> query = dbSet;
+            if(includeProperties is not null)
+            {
+                query = query.Include(entity);
+            }
+            query = query.Where(filter!);
+            return query.ToList();
+        }
+
         public void Remove(T entity)
         {
             dbSet.Remove(entity);

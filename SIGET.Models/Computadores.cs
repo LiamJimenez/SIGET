@@ -12,5 +12,7 @@ namespace SIGET.Models
         public string Nombre { get; set; }
         [Required]
         public string Ip { get; set; }
+        [Required]
+        public bool Estado { get; set; } = true;
     }
 }

@@ -64,7 +64,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
                     _unitOfWork.Computadores.Update(computadoresVM.Computadores);
                 }
                 _unitOfWork.Save();
-                TempData["exito"] = "Computadores agregado correctamente";
+                TempData["exito"] = "Computador agregado correctamente";
                 return RedirectToAction("Index");
             }
             else
@@ -102,7 +102,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
             return Json(new { success = true, message = "Eliminado exitosamente" });
         }
 
+
         #endregion 
     }
 }
- 

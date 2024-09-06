@@ -7,7 +7,6 @@ using SIGET.DataAccess.Data;
 using SIGET.Models;
 using SIGET.Models.ViewModel;
 
-
 namespace SIGETWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -23,8 +22,26 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll(includeProperties: "Computador").ToList();
-            return View(objColaboradoresList);
+            List<Colaboradores> objColaboradoresList = _unitOfWork.Colaboradores.GetAll(includeProperties: "Computadores").ToList();
+
+            List<ColaboradorComputador>? colaboradorComputadores = new();
+
+            if (objColaboradoresList != null)
+            {
+
+                foreach(var colaboradores in objColaboradoresList)
+                {
+                    Computadores objComputador = _unitOfWork.Computadores.Get(a=>a.Id == colaboradores.ComputadoresId);
+
+                    colaboradorComputadores.Add(new ColaboradorComputador
+                    {
+                        Colaboradores = colaboradores,
+                        Computadores = objComputador
+                    });
+
+                }
+            }
+            return View(colaboradorComputadores);
         }
 
         public IActionResult Upsert(int? id)
@@ -32,7 +49,8 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
             ColaboradorVM colaboradorVM = new()
             {
-                ComputadoresList = _unitOfWork.Computadores.GetAll().Select(u => new SelectListItem
+
+                ComputadoresList = _unitOfWork.Computadores.GetAllSet(filter: a=>a.Estado).Select(u => new SelectListItem
                 {
                     Text = u.Ip,
                     Value = u.Id.ToString()
@@ -88,6 +106,14 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Colaboradores.Update(colaboradorVM.Colaboradores);
                 }
+
+                var computador = _unitOfWork.Computadores.Get(a=>a.Id.Equals(colaboradorVM.Colaboradores.ComputadoresId));
+
+                if (computador is not null)
+                {
+                    computador.Estado = false;
+                    _unitOfWork.Computadores.Update(computador);
+                }
                 _unitOfWork.Save();
                 TempData["exito"] = "Colaborador agregado correctamente";
                 return RedirectToAction("Index");
@@ -136,6 +162,24 @@ namespace SIGETWeb.Areas.Admin.Controllers
             if (System.IO.File.Exists(oldImagePath))
             {
                 System.IO.File.Delete(oldImagePath);
+            }
+
+            var computador = _unitOfWork.Computadores.Get(filter: a => a.Id.Equals(colaboradorToBeDeleted.ComputadoresId));
+
+            if (computador.Estado is false && computador is not null)
+            {
+                computador.Estado = true;
+                _unitOfWork.Computadores.Update(computador);
+            }
+
+            var pedidos = _unitOfWork.Pedidos.GetAllSet(filter: a=>a.ColaboradoresId == colaboradorToBeDeleted.Id);
+
+            if (pedidos is not null)
+            {
+                foreach (var pedidosAll in pedidos)
+                {
+                    _unitOfWork.Pedidos.Remove(pedidosAll);
+                }
             }
 
             _unitOfWork.Colaboradores.Remove(colaboradorToBeDeleted);

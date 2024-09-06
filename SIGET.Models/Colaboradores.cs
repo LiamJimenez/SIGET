@@ -20,7 +20,7 @@ namespace SIGET.Models
         public string Area { get; set; }
         [ValidateNever]
         [Display(Name = "Imagen")]
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public int ComputadoresId { get; set; }
         [ForeignKey("ComputadoresId")]

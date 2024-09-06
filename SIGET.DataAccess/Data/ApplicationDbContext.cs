@@ -47,7 +47,7 @@ namespace SIGET.DataAccess.Data
                     ImageUrl = "",
                     ComputadoresId = 3,
                 }
-                );
+            );
             modelBuilder.Entity<ComponentesFisicos>().HasData(
                 new ComponentesFisicos
                 {
@@ -97,15 +97,7 @@ namespace SIGET.DataAccess.Data
                     ServiciosId = 1,
                     Cantidad = 10,
                 }
-                );
-            modelBuilder.Entity<Computadores>().HasData(
-                new Computadores 
-                {
-                    Id = 5,
-                    Nombre = "LMJP4057",
-                    Ip = "111.857.22.82"
-                }
-                );
+            );
         }
     }
 }

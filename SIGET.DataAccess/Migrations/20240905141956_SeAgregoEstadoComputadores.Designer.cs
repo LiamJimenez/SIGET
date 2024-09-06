@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIGET.DataAccess.Data;
 
@@ -11,9 +12,11 @@ using SIGET.DataAccess.Data;
 namespace SIGET.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240905141956_SeAgregoEstadoComputadores")]
+    partial class SeAgregoEstadoComputadores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,6 +251,7 @@ namespace SIGET.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
@@ -362,6 +366,15 @@ namespace SIGET.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("computadores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 5,
+                            Ip = "111.857.22.82",
+                            Nombre = "LMJP4057",
+                            estado = true
+                        });
                 });
 
             modelBuilder.Entity("SIGET.Models.Licencias", b =>
