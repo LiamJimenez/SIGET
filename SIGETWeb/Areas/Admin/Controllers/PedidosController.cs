@@ -85,12 +85,12 @@ namespace SIGETWeb.Areas.Admin.Controllers
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
-                });
+                }).ToList();
                 pedidosVM.ServiciosList = _unitOfWork.Servicios.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Nombre,
                     Value = u.Id.ToString()
-                });
+                }).ToList();
                 return View(pedidosVM);
             }
         }

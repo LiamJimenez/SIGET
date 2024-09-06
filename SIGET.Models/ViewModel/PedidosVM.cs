@@ -11,6 +11,7 @@ namespace SIGET.Models.ViewModel
     public class PedidosVM
     {
         public Pedidos Pedidos { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> ColaboradoresList { get; set; }
 

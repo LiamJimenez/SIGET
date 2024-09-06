@@ -29,9 +29,9 @@ namespace SIGETWeb.Areas.Admin.Controllers
             if (objColaboradoresList != null)
             {
 
-                foreach(var colaboradores in objColaboradoresList)
+                foreach (var colaboradores in objColaboradoresList)
                 {
-                    Computadores objComputador = _unitOfWork.Computadores.Get(a=>a.Id == colaboradores.ComputadoresId);
+                    Computadores objComputador = _unitOfWork.Computadores.Get(a => a.Id == colaboradores.ComputadoresId);
 
                     colaboradorComputadores.Add(new ColaboradorComputador
                     {
@@ -46,7 +46,7 @@ namespace SIGETWeb.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-
+        
             ColaboradorVM colaboradorVM = new()
             {
 
